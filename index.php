@@ -9,6 +9,10 @@ $username = "u402017191_printPrice";
 $password = "Codelock@99";
 $dbname = "u402017191_printonprice";
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
