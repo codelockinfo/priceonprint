@@ -25,10 +25,11 @@ if ($conn->connect_error) {
 if (isset($_FILES['image']['name'])) {
     // Handle the uploaded file
     $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $timestamp = time();
+    $target_file = $target_dir . basename($timestamp . '_' .$_FILES["image"]["name"]);
 
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        $imageName = $_FILES["image"]["name"];
+        $imageName = $timestamp . '_' .$_FILES["image"]["name"];
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
     
