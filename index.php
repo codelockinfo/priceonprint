@@ -1,29 +1,18 @@
 <?php 
 
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE"); // Adjust the allowed methods
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With"); // Add the necessary headers
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE"); 
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With"); 
 
-$servername = "localhost";
-$username = "u402017191_printPrice";
-$password = "Codelock@99";
-$dbname = "u402017191_printonprice";
+include 'connection.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 
 if (isset($_FILES['image']['name'])) {
-    // Handle the uploaded file
+
     $target_dir = "uploads/";
     $timestamp = time();
     $target_file = $target_dir . basename($timestamp . '_' .$_FILES["image"]["name"]);
