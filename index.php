@@ -1,6 +1,8 @@
 <?php 
 
-echo "Hellow World!";
-echo "This is new line";
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+
 
 ?>
