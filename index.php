@@ -8,9 +8,19 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 include 'connection.php';
 
 
-echo "<pre>";
-print_r($_FILES);
-echo "</pre>";
+if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    // Handle the uploaded file
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        echo "File uploaded successfully.";
+    } else {
+        echo "Error moving file.";
+    }
+} else {
+    echo "Error uploading the file.";
+}
 
 
 ?>
