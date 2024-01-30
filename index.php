@@ -33,9 +33,9 @@ if (isset($_FILES['image']['name'])) {
         $imageType = $_FILES["image"]["type"];
         
     
-        
-        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size) VALUES ($imageName, $imageSize)");
         echo "INSERT INTO images (image_name, image_size) VALUES ($imageName, $imageSize)";
+        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size) VALUES ($imageName, $imageSize)");
+        
     
         if ($stmt->execute()) {
             echo "Image uploaded and data stored successfully!";
