@@ -18,8 +18,7 @@ if ($conn->connect_error) {
 }
 
 print_r($_FILES);
-die;
-if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+if (isset($_FILES['image']['name'])) {
     // Handle the uploaded file
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
