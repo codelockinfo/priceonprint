@@ -9,10 +9,6 @@ $username = "u402017191_printPrice";
 $password = "Codelock@99";
 $dbname = "u402017191_printonprice";
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -31,11 +27,10 @@ if (isset($_FILES['image']['name'])) {
         $imageName = $_FILES["image"]["name"];
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
-        
+        $imageData = file_get_contents($_FILES["image"]["tmp_name"]);
     
-        echo "INSERT INTO images (image_name, image_size) VALUES ($imageName, $imageSize)";
-        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size) VALUES ($imageName, $imageSize)");
         
+        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES (`$imageName`, `$imageSize`, `$imageType`, `$imageData`)");
     
         if ($stmt->execute()) {
             echo "Image uploaded and data stored successfully!";
