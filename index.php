@@ -17,7 +17,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-print_r($_FILES);
+
 if (isset($_FILES['image']['name'])) {
     // Handle the uploaded file
     $target_dir = "uploads/";
@@ -29,8 +29,8 @@ if (isset($_FILES['image']['name'])) {
         $imageType = $_FILES["image"]["type"];
         $imageData = file_get_contents($_FILES["image"]["tmp_name"]);
     
-
-        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES ($imageName, $imageSize, $imageType, $imageData)");
+        
+        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type) VALUES ($imageName, $imageSize, $imageType)");
     
         if ($stmt->execute()) {
             echo "Image uploaded and data stored successfully!";
