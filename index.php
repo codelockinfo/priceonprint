@@ -14,7 +14,22 @@ if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        echo "File uploaded successfully.";
+        $imageName = $_FILES["image"]["name"];
+        $imageSize = $_FILES["image"]["size"];
+        $imageType = $_FILES["image"]["type"];
+        $imageData = file_get_contents($_FILES["image"]["tmp_name"]);
+    
+
+        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES (?, ?, ?, ?)");
+        
+        $stmt->bind_param("siss", $imageName, $imageSize, $imageType, $imageData);
+    
+        if ($stmt->execute()) {
+            echo "Image uploaded and data stored successfully!";
+        } else {
+            echo "Error uploading image and storing data: " . $stmt->error;
+        }
+    
     } else {
         echo "Error moving file.";
     }

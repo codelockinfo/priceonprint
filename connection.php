@@ -10,11 +10,5 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}else{
-    echo "Connection Success";
 }
-// Perform database operations here...
-
-// Close the connection
-$conn->close();
 ?>
