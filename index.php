@@ -4,10 +4,21 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE"); // Adjust the allowed methods
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With"); // Add the necessary headers
 
+$servername = "localhost";
+$username = "u402017191_printPrice";
+$password = "Codelock@99";
+$dbname = "u402017191_printonprice";
 
-include 'connection.php';
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
+print_r($_FILES);
+die;
 if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
     // Handle the uploaded file
     $target_dir = "uploads/";
