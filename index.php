@@ -32,9 +32,10 @@ if (isset($_FILES['image']['name'])) {
         $imageName = $timestamp . '_' .$_FILES["image"]["name"];
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
-    
+
+        $file_data = isset($_POST['height']) ? $_POST['height'].'_'.$_POST['width'] : '';
         
-        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type) VALUES ('$imageName', '$imageSize', '$imageType')");
+        $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES ('$imageName', '$imageSize', '$imageType','$file_data')");
     
         if ($stmt->execute()) {
             echo "Image uploaded and data stored successfully!";
