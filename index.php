@@ -49,7 +49,7 @@ if (isset($_FILES['image']['name'])) {
             $result = array(
                 "result" => "success",
                 "msg" => "Image uploaded and data stored successfully!",
-                "data" => array("domain" => $domain,"full_domain" => $full_domain)
+                "data" => array("file_link" => $full_domain.'/priceonprint/uploads/'.$imageName)
             );
             
         } else {
