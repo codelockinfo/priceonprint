@@ -26,12 +26,12 @@ if (isset($_FILES['image']['name'])) {
         
         $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES ('$imageName', '$imageSize', '$imageType','$file_data')");
         $domain = $_SERVER['HTTP_HOST'];
-
+        $full_domain = getFullDomain();
         if ($stmt->execute()) {
             $result = array(
                 "result" => "success",
                 "msg" => "Image uploaded and data stored successfully!",
-                "data" => array("domain" => $domain,"file_name" => $_FILES["image"]["tmp_name"])
+                "data" => array("domain" => $domain,"full_domain" => $full_domain)
             );
             
         } else {
@@ -44,6 +44,29 @@ if (isset($_FILES['image']['name'])) {
     } else {
         echo "Error moving file.";
     }
+
+
+
+
+    function getFullDomain() {
+        // Check if SSL is enabled - consider both reverse proxy and direct scenarios
+        $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                    || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+                    || (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && $_SERVER['HTTP_FRONT_END_HTTPS'] !== 'off');
+    
+        // Define protocol based on $isSecure check
+        $protocol = $isSecure ? 'https://' : 'http://';
+    
+        // Get the server name (e.g., www.example.com)
+        $serverName = $_SERVER['HTTP_HOST']; // This includes the port number if different from default
+    
+        // Construct full URL
+        $fullDomain = $protocol . $serverName;
+    
+        return $fullDomain;
+    }
+    
+
 } else {
     echo "Error uploading the file.";
 }
