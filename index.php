@@ -10,6 +10,24 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+function getFullDomain() {
+    // Check if SSL is enabled - consider both reverse proxy and direct scenarios
+    $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+                || (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && $_SERVER['HTTP_FRONT_END_HTTPS'] !== 'off');
+
+    // Define protocol based on $isSecure check
+    $protocol = $isSecure ? 'https://' : 'http://';
+
+    // Get the server name (e.g., www.example.com)
+    $serverName = $_SERVER['HTTP_HOST']; // This includes the port number if different from default
+
+    // Construct full URL
+    $fullDomain = $protocol . $serverName;
+
+    return $fullDomain;
+}
+
 
 if (isset($_FILES['image']['name'])) {
 
@@ -44,29 +62,6 @@ if (isset($_FILES['image']['name'])) {
     } else {
         echo "Error moving file.";
     }
-
-
-
-
-    function getFullDomain() {
-        // Check if SSL is enabled - consider both reverse proxy and direct scenarios
-        $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-                    || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-                    || (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && $_SERVER['HTTP_FRONT_END_HTTPS'] !== 'off');
-    
-        // Define protocol based on $isSecure check
-        $protocol = $isSecure ? 'https://' : 'http://';
-    
-        // Get the server name (e.g., www.example.com)
-        $serverName = $_SERVER['HTTP_HOST']; // This includes the port number if different from default
-    
-        // Construct full URL
-        $fullDomain = $protocol . $serverName;
-    
-        return $fullDomain;
-    }
-    
-
 } else {
     echo "Error uploading the file.";
 }
