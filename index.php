@@ -25,13 +25,22 @@ if (isset($_FILES['image']['name'])) {
         $file_data = isset($_POST['height']) ? $_POST['height'].'_'.$_POST['width'] : '';
         
         $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES ('$imageName', '$imageSize', '$imageType','$file_data')");
-    
+        $domain = $_SERVER['HTTP_HOST'];
+
         if ($stmt->execute()) {
-            echo "Image uploaded and data stored successfully!";
+            $result = array(
+                "result" => "success",
+                "msg" => "Image uploaded and data stored successfully!",
+                "data" => array("domain" => $domain,"file_name" => $_FILES["image"]["tmp_name"])
+            );
+            
         } else {
-            echo "Error uploading image and storing data: " . $stmt->error;
+            $result = array(
+                "result" => "fail",
+                "msg" => "Something went wrong"
+            );
         }
-    
+        echo json_encode($result);
     } else {
         echo "Error moving file.";
     }
