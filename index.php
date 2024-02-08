@@ -30,11 +30,9 @@ function getFullDomain() {
 
 
 if (isset($_FILES['image']['name'])) {
-    print_r($_FILES);
     $target_dir = "uploads/";
     $timestamp = time();
     $target_file = $target_dir . basename($timestamp . '_' .$_FILES["image"]["name"]);
-    print_r($target_file);
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         $imageName = $timestamp . '_' .$_FILES["image"]["name"];
         $imageSize = $_FILES["image"]["size"];
