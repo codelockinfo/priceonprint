@@ -32,7 +32,7 @@ function getFullDomain() {
 if (isset($_FILES['image']['name'])) {
 
 
-    $uploadedFile = $_FILES['file']['tmp_name'];
+    $uploadedFile = $_FILES['image']['tmp_name'];
     $outputFile = 'path/to/output.png';
 
 // Convert .ai to .png using ImageMagick
