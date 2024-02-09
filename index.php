@@ -30,24 +30,6 @@ function getFullDomain() {
 
 
 if (isset($_FILES['image']['name'])) {
-
-    $uploadedFile = $_FILES['image']['tmp_name'];
-    $outputFile = 'path/to/output.png';
-
-// Convert .ai to .png using ImageMagick
-    // $command = "convert '{$uploadedFile}' '{$outputFile}'";
-    exec("convert '{$uploadedFile}' '{$outputFile}'", $output, $returnVar);
-
-
-    if ($returnVar == 0) {
-        echo json_encode(['success' => true, 'imageUrl' => '/url/to/output.png']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Conversion failed.']);
-    }
-
-    die;
-
-
     $target_dir = "uploads/";
     $timestamp = time();
     $target_file = $target_dir . basename($timestamp . '_' .$_FILES["image"]["name"]);
