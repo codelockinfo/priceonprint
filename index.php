@@ -31,7 +31,6 @@ function getFullDomain() {
 
 if (isset($_FILES['image']['name'])) {
 
-
     $uploadedFile = $_FILES['image']['tmp_name'];
     $outputFile = 'path/to/output.png';
 
