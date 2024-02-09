@@ -35,7 +35,7 @@ if (isset($_FILES['image']['name'])) {
     $outputFile = 'path/to/output.png';
 
 // Convert .ai to .png using ImageMagick
-    $command = "convert '{$uploadedFile}[0]' '{$outputFile}'";
+    $command = "convert '{$uploadedFile}' '{$outputFile}'";
     exec($command, $output, $returnVar);
 
     if ($returnVar == 0) {
