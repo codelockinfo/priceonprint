@@ -35,8 +35,9 @@ if (isset($_FILES['image']['name'])) {
     $outputFile = 'path/to/output.png';
 
 // Convert .ai to .png using ImageMagick
-    $command = "convert '{$uploadedFile}' '{$outputFile}'";
-    exec($command, $output, $returnVar);
+    // $command = "convert '{$uploadedFile}' '{$outputFile}'";
+    exec("convert '{$uploadedFile}' '{$outputFile}'", $output, $returnVar);
+
 
     if ($returnVar == 0) {
         echo json_encode(['success' => true, 'imageUrl' => '/url/to/output.png']);
