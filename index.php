@@ -43,9 +43,13 @@ if (isset($_FILES['image']['name'])) {
         $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES ('$imageName', '$imageSize', '$imageType','$file_data')");
         $domain = $_SERVER['HTTP_HOST'];
         $full_domain = getFullDomain();
+
+        $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
+        
         if ($stmt->execute()) {
             $result = array(
                 "result" => "success",
+                "type" => $file_extension,
                 "msg" => "Image uploaded and data stored successfully!",
                 "data" => array("file_link" => $full_domain.'/priceonprint/uploads/'.$imageName)
             );
