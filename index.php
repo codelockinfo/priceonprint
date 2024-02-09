@@ -45,7 +45,7 @@ if (isset($_FILES['image']['name'])) {
     } else {
         echo json_encode(['success' => false, 'message' => 'Conversion failed.']);
     }
-
+        
     die;
 
 
