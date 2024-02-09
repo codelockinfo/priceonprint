@@ -32,7 +32,6 @@ function getFullDomain() {
 if (isset($_FILES['image']['name'])) {
 
 
-
     $uploadedFile = $_FILES['file']['tmp_name'];
     $outputFile = 'path/to/output.png';
 
@@ -45,7 +44,7 @@ if (isset($_FILES['image']['name'])) {
     } else {
         echo json_encode(['success' => false, 'message' => 'Conversion failed.']);
     }
-        
+
     die;
 
 
