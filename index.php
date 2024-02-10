@@ -37,7 +37,7 @@ if (isset($_FILES['image']['name'])) {
         $imageName = $timestamp . '_' .$_FILES["image"]["name"];
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
-
+        print_r($target_file);
         $image_size = getimagesize($target_file);
         print_r($image_size);
         $image_width = $image_size[0];
