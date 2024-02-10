@@ -39,6 +39,9 @@ if (isset($_FILES['image']['name'])) {
         $imageType = $_FILES["image"]["type"];
 
         $output = shell_exec("identify -format '%w %h' " . escapeshellarg($target_file));
+        print_r($output);
+        $outputname = shell_exec("identify -format '%w %h' " . escapeshellarg($imageName));
+        print_r($outputname);
         list($image_width, $image_height) = explode(' ', trim($output));
 
         $file_data = isset($_POST['height']) ? $_POST['height'].'_'.$_POST['width'] : '';
