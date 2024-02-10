@@ -41,10 +41,6 @@ if (isset($_FILES['image']['name'])) {
         $image_size = getimagesize($target_file);
         $image_width = $image_size[0];
         $image_height = $image_size[1];
-echo "<pre>";
-print_r($image_width); 
-print_r($image_height); 
-die;
 
         $file_data = isset($_POST['height']) ? $_POST['height'].'_'.$_POST['width'] : '';
         
@@ -58,6 +54,8 @@ die;
             $result = array(
                 "result" => "success",
                 "type" => $file_extension,
+                "width" => $image_width,
+                "Height" => $image_height,
                 "msg" => "Image uploaded and data stored successfully!",
                 "data" => array("file_link" => $full_domain.'/priceonprint/uploads/'.$imageName)
             );
