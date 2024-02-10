@@ -45,18 +45,12 @@ if (isset($_FILES['image']['name'])) {
         $full_domain = getFullDomain();
 
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
-        $image_size = getimagesize($image_path);
-        echo "<pre>";
-        print_r($image_size);
-        $image_width = $image_size[0];
-        $image_height = $image_size[1];
-die;
+        
         if ($stmt->execute()) {
             $result = array(
                 "result" => "success",
                 "type" => $file_extension,
                 "msg" => "Image uploaded and data stored successfully!",
-                "widthheight" => ,
                 "data" => array("file_link" => $full_domain.'/priceonprint/uploads/'.$imageName)
             );
             
