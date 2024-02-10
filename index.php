@@ -38,6 +38,14 @@ if (isset($_FILES['image']['name'])) {
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
 
+        $image_size = getimagesize($imageName);
+        $image_width = $image_size[0];
+        $image_height = $image_size[1];
+echo "<pre>";
+print_r($image_width); 
+print_r($image_height); 
+die;
+
         $file_data = isset($_POST['height']) ? $_POST['height'].'_'.$_POST['width'] : '';
         
         $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES ('$imageName', '$imageSize', '$imageType','$file_data')");
