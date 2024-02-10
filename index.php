@@ -51,6 +51,9 @@ if (isset($_FILES['image']['name'])) {
                 "result" => "success",
                 "type" => $file_extension,
                 "msg" => "Image uploaded and data stored successfully!",
+                "width" => $_POST['width'],
+                "height" => $_POST['height'],
+                "widthheight" => $file_data,
                 "data" => array("file_link" => $full_domain.'/priceonprint/uploads/'.$imageName)
             );
             
