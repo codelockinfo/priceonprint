@@ -38,13 +38,6 @@ if (isset($_FILES['image']['name'])) {
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
 
-        $output = shell_exec("identify -format '%w %h' " . escapeshellarg($target_file));
-        print_r($output);
-        $outputname = shell_exec("identify -format '%w %h' " . escapeshellarg($imageName));
-        print_r($outputname);
-        die;
-        list($image_width, $image_height) = explode(' ', trim($output));
-
         $file_data = isset($_POST['height']) ? $_POST['height'].'_'.$_POST['width'] : '';
         
         $stmt = $conn->prepare("INSERT INTO images (image_name, image_size, image_type, image_data) VALUES ('$imageName', '$imageSize', '$imageType','$file_data')");
@@ -57,8 +50,6 @@ if (isset($_FILES['image']['name'])) {
             $result = array(
                 "result" => "success",
                 "type" => $file_extension,
-                "width" => $image_width,
-                "Height" => $image_height,
                 "msg" => "Image uploaded and data stored successfully!",
                 "data" => array("file_link" => $full_domain.'/priceonprint/uploads/'.$imageName)
             );
