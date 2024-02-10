@@ -38,7 +38,7 @@ if (isset($_FILES['image']['name'])) {
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
 
-        $image_size = getimagesize($imageName);
+        $image_size = getimagesize($target_file);
         $image_width = $image_size[0];
         $image_height = $image_size[1];
 echo "<pre>";
