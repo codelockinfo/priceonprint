@@ -39,6 +39,7 @@ if (isset($_FILES['image']['name'])) {
         $imageType = $_FILES["image"]["type"];
 
         $image_size = getimagesize($target_file);
+        print_r($image_size);
         $image_width = $image_size[0];
         $image_height = $image_size[1];
 
