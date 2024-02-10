@@ -37,11 +37,9 @@ if (isset($_FILES['image']['name'])) {
         $imageName = $timestamp . '_' .$_FILES["image"]["name"];
         $imageSize = $_FILES["image"]["size"];
         $imageType = $_FILES["image"]["type"];
-        print_r($target_file);
-        $image_size = getimagesize($target_file);
-        print_r($image_size);
-        $image_width = $image_size[0];
-        $image_height = $image_size[1];
+
+        $output = shell_exec("identify -format '%w %h' " . escapeshellarg($target_file));
+        list($image_width, $image_height) = explode(' ', trim($output));
 
         $file_data = isset($_POST['height']) ? $_POST['height'].'_'.$_POST['width'] : '';
         
