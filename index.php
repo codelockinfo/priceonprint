@@ -45,7 +45,6 @@ if (isset($_FILES['image']['name'])) {
         $full_domain = getFullDomain();
 
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
-
         $dimensions = getimagesize($target_file);
         if ($dimensions !== false) {
             $width = $dimensions[0]; // Width is at index 0
@@ -61,6 +60,7 @@ if (isset($_FILES['image']['name'])) {
                 "type" => $file_extension,
                 "width" => $width,
                 "height" => $height,
+                "target_file" => $target_file,
                 "msg" => "Image uploaded and data stored successfully!",
                 "data" => array("file_link" => $full_domain.'/priceonprint/uploads/'.$imageName)
             );
