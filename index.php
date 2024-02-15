@@ -48,13 +48,13 @@ if (isset($_FILES['image']['name'])) {
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
        
  
-// $image->readimage($target_file);
-// if ($imageType == "psd" || $imageType == "ai"){
-//     $image->setIteratorIndex(0);
-// }
-// $dimensions = $image->getImageGeometry();
-// $width = $dimensions['width'];
-// $height = $dimensions['height'];
+$image->readimage($full_domain.'/priceonprint/uploads/'.$imageName);
+if ($imageType == "psd" || $imageType == "ai"){
+    $image->setIteratorIndex(0);
+}
+$dimensions = $image->getImageGeometry();
+$width = $dimensions['width'];
+$height = $dimensions['height'];
 
         if ($stmt->execute()) {
             $result = array(
