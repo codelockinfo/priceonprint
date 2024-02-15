@@ -48,7 +48,7 @@ if (isset($_FILES['image']['name'])) {
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
        
  
-// $image->readimage($full_domain.'/priceonprint/uploads/'.$imageName);
+// $image->readimage($target_file);
 // if ($imageType == "psd" || $imageType == "ai"){
 //     $image->setIteratorIndex(0);
 // }
