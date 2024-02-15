@@ -45,13 +45,13 @@ if (isset($_FILES['image']['name'])) {
         $full_domain = getFullDomain();
 
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
+        $width =  $imageSize;
+        $height = "Failed to get dimensions.";
         $dimensions = getimagesize($target_file);
         if ($dimensions !== false) {
             $width = $dimensions[0]; // Width is at index 0
             $height = $dimensions[1]; // Height is at index 1
         } else {
-            $width =  "Failed to get dimensions.";
-            $height = "Failed to get dimensions.";
         }
 
         if ($stmt->execute()) {
