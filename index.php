@@ -9,7 +9,7 @@ include 'connection.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+$image = new Imagick();
 function getFullDomain() {
     // Check if SSL is enabled - consider both reverse proxy and direct scenarios
     $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
@@ -45,14 +45,15 @@ if (isset($_FILES['image']['name'])) {
         $full_domain = getFullDomain();
 
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
-        $dimensions = getimagesize($target_file);
-        if ($dimensions !== false) {
-            $width = $dimensions[0]; // Width is at index 0
-            $height = $dimensions[1]; // Height is at index 1
-        } else {
-            $width =  "Failed to get dimensions.";
-            $height = "Failed to get dimensions.";
-        }
+       
+ 
+$image->readimage($target_file);
+if ($fileType == "psd" || $fileType == "ai"){
+    $image->setIteratorIndex(0);
+}
+$dimensions = $image->getImageGeometry();
+$width = $dimensions['width'];
+$height = $dimensions['height'];
 
         if ($stmt->execute()) {
             $result = array(
