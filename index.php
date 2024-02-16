@@ -51,7 +51,11 @@ if (isset($_FILES['image']['name'])) {
 if ($imageType == "psd" || $imageType == "ai"){
     $image->readImage($target_file);
     $width = $image->getImageWidth();
+    echo "<pre>";
+    print_r($width);
     $height = $image->getImageHeight();
+    echo "<pre>";
+    print_r($height);
 }
 
         if ($stmt->execute()) {
