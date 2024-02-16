@@ -9,7 +9,7 @@ include 'connection.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$image = new Imagick();
+// $image = new Imagick();
 function getFullDomain() {
     // Check if SSL is enabled - consider both reverse proxy and direct scenarios
     $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
