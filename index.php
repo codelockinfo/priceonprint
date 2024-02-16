@@ -3,6 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE"); 
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With"); 
+header('Content-type: image/jpeg');
 
 include 'connection.php';
 
@@ -48,13 +49,13 @@ if (isset($_FILES['image']['name'])) {
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
        
  
-// $image->readimage($target_file);
-// if ($imageType == "psd" || $imageType == "ai"){
-//     $image->setIteratorIndex(0);
-// }
-// $dimensions = $image->getImageGeometry();
-// $width = $dimensions['width'];
-// $height = $dimensions['height'];
+$image->readImage($target_file);
+if ($imageType == "psd" || $imageType == "ai"){
+    $image->setIteratorIndex(0);
+}
+$dimensions = $image->getImageGeometry();
+$width = $dimensions['width'];
+$height = $dimensions['height'];
 
         if ($stmt->execute()) {
             $result = array(
