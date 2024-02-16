@@ -48,7 +48,7 @@ if (isset($_FILES['image']['name'])) {
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
        
 if ($file_extension == "psd" || $file_extension == "ai"){
-    $image->readImage($target_file);
+    $image->readImage($imageName);
     $width = $image->getImageWidth();
     echo "<pre>";
     print_r($width);
