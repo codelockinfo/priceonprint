@@ -47,15 +47,15 @@ if (isset($_FILES['image']['name'])) {
 
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
        
-if ($file_extension == "psd" || $file_extension == "ai"){
-    $image->readImage($target_dir . $imageName);
-    $width = $image->getImageWidth();
-    echo "<pre>";
-    print_r($width);
-    $height = $image->getImageHeight();
-    echo "<pre>";
-    print_r($height);
-}
+// if ($file_extension == "psd" || $file_extension == "ai"){
+//     $image->readImage($target_dir . $imageName);
+//     $width = $image->getImageWidth();
+//     echo "<pre>";
+//     print_r($width);
+//     $height = $image->getImageHeight();
+//     echo "<pre>";
+//     print_r($height);
+// }
 
         if ($stmt->execute()) {
             $result = array(
