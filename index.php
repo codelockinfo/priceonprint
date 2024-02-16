@@ -49,13 +49,11 @@ if (isset($_FILES['image']['name'])) {
         $file_extension = pathinfo($imageName, PATHINFO_EXTENSION);
        
  
-$image->readImage($target_file);
 if ($imageType == "psd" || $imageType == "ai"){
-    $image->setIteratorIndex(0);
+    $image->readImage($target_file);
+    $width = $image->getImageWidth();
+    $height = $image->getImageHeight();
 }
-$dimensions = $image->getImageGeometry();
-$width = $dimensions['width'];
-$height = $dimensions['height'];
 
         if ($stmt->execute()) {
             $result = array(
